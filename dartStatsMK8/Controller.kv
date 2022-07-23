@@ -1,0 +1,385 @@
+WindowManager:
+    FirstWindow:
+    SecondWindow:
+
+<FirstWindow>:
+
+    name: "first"
+
+    BoxLayout:
+        orientation: "horizontal"
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: (0.68, 1)
+
+            GridLayout:
+                rows: 7
+                cols: 2
+                size_hint: (1, 0.7)
+
+                Button:
+                    text: "add points"
+                    id: add_point_btn
+                    font_size: 25
+                    background_color: (0, 0, 1, 1)
+                    on_press: root.add_point()
+
+                Button:
+                    text: "save point"
+                    font_size: 25
+                    background_color: (0, 0, 1, 1)
+                    on_press: root.save_point()
+
+                Label:
+                    text: "CANON "
+                    halign: "center"
+                    font_size: 25
+                    background_color: (22/255, 115/255, 221/255, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+
+                TextInput:
+                    text: "1"
+                    id: canon
+                    padding_x: (self.width/2, 0)
+                    padding_y: (self.height/4, 0)
+                    font_size: 32
+                    background_normal: 'white.jpg'
+                    background_active: 'white.jpg'
+                    multiline: False
+
+                Label:
+                    text: "ANGLE"
+                    halign: "center"
+                    font_size: 25
+                    background_color: (22/255, 115/255, 221/255, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+
+                TextInput:
+                    text: "5"
+                    id: angle
+                    padding_x: (self.width/2, 0)
+                    padding_y: (self.height/4, 0)
+                    font_size: 32
+                    background_normal: 'white.jpg'
+                    background_active: 'white.jpg'
+                    multiline: False
+
+                Label:
+                    text: "FRONT DISTANCE"
+                    halign: "center"
+                    font_size: 25
+                    background_color: (22/255, 115/255, 221/255, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+
+                TextInput:
+                    text: "237"
+                    id: front_distance
+                    padding_x: (3*self.width/7, 0)
+                    padding_y: (self.height/4, 0)
+                    font_size: 32
+                    background_normal: 'white.jpg'
+                    background_active: 'white.jpg'
+                    multiline: False
+
+                Label:
+                    text: "LEFT DISTANCE"
+                    halign: "center"
+                    font_size: 25
+                    background_color: (22/255, 115/255, 221/255, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+
+                TextInput:
+                    text: "25"
+                    padding_x: (5*self.width/11, 0)
+                    padding_y: (self.height/4, 0)
+                    font_size: 32
+                    background_normal: 'white.jpg'
+                    background_active: 'white.jpg'
+                    id: left_distance
+                    multiline: False
+
+                Label:
+                    text: "HEIGHT "
+                    halign: "center"
+                    font_size: 25
+                    background_color: (22/255, 115/255, 221/255, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+
+                TextInput:
+                    text: "91"
+                    id: height
+                    padding_x: (5*self.width/11, 0)
+                    padding_y: (self.height/4, 0)
+                    font_size: 32
+                    background_normal: 'white.jpg'
+                    background_active: 'white.jpg'
+                    multiline: False
+
+                Label:
+                    id: x_value
+                    halign: "center"
+                    font_size: 25
+                    background_color: (1, 1, 1, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    color: (0, 0, 0, 1)
+
+                Label:
+                    id: y_value
+                    halign: "center"
+                    font_size: 25
+                    background_color: (1, 1, 1, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    color: (0, 0, 0, 1)
+
+            GridLayout:
+                cols: 3
+                rows: 2
+                size_hint: (1, 0.3)
+
+                Button:
+                    text: "statistics"
+                    background_color: (0, 0, 1, 1)
+                    font_size: 25
+                    on_release:
+                        app.root.current = "second"
+                        root.manager.transition.direction = "left"
+
+
+                # --------------------------------------------------------
+                # end calibration, start aiming part
+
+                Button:
+                    text: "  select\nobjective"
+                    id: select_btn
+                    font_size: 25
+                    background_color: (0, 0, 1, 1)
+                    on_press: root.select_objective()
+
+                Button:
+                    text: "   calculate\nlast objective"
+                    id: calculate_btn
+                    font_size: 25
+                    background_color: (0, 0, 1, 1)
+                    on_press: root.calculate_obj()
+
+                Label:
+                    text: ""
+                    id: objective_label1
+                    font_size: 20
+                    background_color: (22/255, 115/255, 221/255, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+
+                Label:
+                    text: ""
+                    id: objective_label2
+                    font_size: 20
+                    background_color: (22/255, 115/255, 221/255, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+
+                Label:
+                    text: ""
+                    id: objective_label3
+                    font_size: 20
+                    background_color: (22/255, 115/255, 221/255, 1)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+
+
+        Image:
+            source: "dartboard.PNG"
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+<SecondWindow>:
+
+    name: "second"
+
+    BoxLayout:
+        orientation: "vertical"
+
+        GridLayout:
+            cols: 2
+            rows: 1
+            size_hint: (1, 0.1)
+
+
+            Button:
+                size_hint_x: 0.5
+                size_hint_y: 0.1
+                text: "Go Back"
+                font_size: 32
+                background_color: (0, 0, 1, 1)
+                on_release:
+                    app.root.current = "first"
+                    root.manager.transition.direction = "right"
+
+            Button:
+                size_hint_x: 0.5
+                size_hint_y: 0.1
+                font_size: 32
+                text: "show graphics"
+                background_color: (0, 0, 1, 1)
+                on_press: root.show_graph()
+
+        GridLayout:
+            cols: 3
+            rows: 2
+            size_hint: (1, 0.9)
+
+            ScrollView:
+                pos: 0, 0
+                size_hint_x: 0.5
+                size_hint_y: 0.25
+                id: plot_scroll
+                do_scroll_y: True
+                do_scroll_x: False
+
+                GridLayout:
+                    row_default_height: 350
+                    size_hint_y: None
+                    height: self.minimum_height
+                    width: self.minimum_width
+                    cols: 1
+                    spacing: "20dp"
+                    padding: "20dp"
+                    id: plot_layout1
+
+            ScrollView:
+                pos: 0, 0
+                size_hint_x: 0.5
+                size_hint_y: 0.25
+                id: plot_scroll
+                do_scroll_y: True
+                do_scroll_x: False
+
+                GridLayout:
+                    row_default_height: 350
+                    size_hint_y: None
+                    height: self.minimum_height
+                    width: self.minimum_width
+                    cols: 1
+                    spacing: "20dp"
+                    padding: "20dp"
+                    id: plot_layout2
+
+            ScrollView:
+                pos: 0, 0
+                size_hint_x: 0.5
+                size_hint_y: 0.25
+                id: plot_scroll
+                do_scroll_y: True
+                do_scroll_x: False
+
+                GridLayout:
+                    row_default_height: 350
+                    size_hint_y: None
+                    height: self.minimum_height
+                    width: self.minimum_width
+                    cols: 1
+                    spacing: "20dp"
+                    padding: "20dp"
+                    id: plot_layout3
+
+            ScrollView:
+                pos: 0, 0
+                size_hint_x: 0.5
+                size_hint_y: 0.25
+                id: plot_scroll
+                do_scroll_y: True
+                do_scroll_x: False
+
+                GridLayout:
+                    row_default_height: 350
+                    size_hint_y: None
+                    height: self.minimum_height
+                    width: self.minimum_width
+                    cols: 1
+                    spacing: "20dp"
+                    padding: "20dp"
+                    id: plot_layout4
+
+            ScrollView:
+                pos: 0, 0
+                size_hint_x: 0.5
+                size_hint_y: 0.25
+                id: plot_scroll
+                do_scroll_y: True
+                do_scroll_x: False
+
+                GridLayout:
+                    row_default_height: 350
+                    size_hint_y: None
+                    height: self.minimum_height
+                    width: self.minimum_width
+                    cols: 1
+                    spacing: "20dp"
+                    padding: "20dp"
+                    id: plot_layout5
+
+            ScrollView:
+                pos: 0, 0
+                size_hint_x: 0.5
+                size_hint_y: 0.25
+                id: plot_scroll
+                do_scroll_y: True
+                do_scroll_x: False
+
+                GridLayout:
+                    row_default_height: 350
+                    size_hint_y: None
+                    height: self.minimum_height
+                    width: self.minimum_width
+                    cols: 1
+                    spacing: "20dp"
+                    padding: "20dp"
+                    id: plot_layout6
